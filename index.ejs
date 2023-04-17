@@ -5,6 +5,19 @@
     <title>Authentication w/ Express</title>
   </head>
   <body>
-    <h1>hello world!</h1>
+    <% if (user) { %> 
+      <h1>Welcome back<%= user.username %>!</h1>
+      <a href="/log-out">Log Out</a>
+    <% } else { %>
+      <h1>Please log in</h1>
+      <form action="/log-in" method="POST">
+        <label for="username">Username</label>
+        <input type="text" name="username" placeholder="username" />
+        <label for="password">Password</label>
+        <input type="password" name="password" />
+        <button type="submit">Log In</button>
+      </form>
+    <% } %>
+
   </body>
 </html>
