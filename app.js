@@ -36,5 +36,6 @@ app.use(passport.session())
 app.use(express.urlencoded({ extended: false }))
 
 app.get("/", (req, res) => res.render("index"))
+app.get("/sign-up", (req, res) => res.render("sign-up"))
 
 app.listen(3000, () => console.log("app listening on local, port 3000!"))
