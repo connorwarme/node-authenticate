@@ -1,4 +1,19 @@
 require('dotenv').config() 
+const nconf = require("nconf")
+// first take commandline arguments
+nconf.argv()
+// then take environment variables
+  .env()
+  // then load from a config file - if specified/needed
+  // .file({ file: 'config.json'})
+// provide default values for settings not provided above
+nconf.defaults({
+  'http': {
+    'port': 3000,
+  }
+})
+// to access, use 'nconf.get(<value>)' to get the settings
+
 const express = require("express")
 const path = require("path")
 const session = require("express-session")
@@ -102,4 +117,4 @@ app.get("/log-out", (req, res, next) => {
   })
 })
 
-app.listen(3000, () => console.log("app listening on local, port 3000!"))
+app.listen(nconf.get('http:port'), () => console.log("app listening on local!"))
